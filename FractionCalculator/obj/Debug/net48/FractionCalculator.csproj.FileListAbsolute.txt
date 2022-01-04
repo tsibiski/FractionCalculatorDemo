@@ -1,0 +1,12 @@
+C:\Users\tim.sibiski\source\repos\FractionCalculator\FractionCalculator\obj\Debug\net48\FractionCalculator.FractionCalculator.resources
+C:\Users\tim.sibiski\source\repos\FractionCalculator\FractionCalculator\obj\Debug\net48\FractionCalculator.csproj.GenerateResource.cache
+C:\Users\tim.sibiski\source\repos\FractionCalculator\FractionCalculator\obj\Debug\net48\FractionCalculator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tim.sibiski\source\repos\FractionCalculator\FractionCalculator\obj\Debug\net48\FractionCalculator.AssemblyInfoInputs.cache
+C:\Users\tim.sibiski\source\repos\FractionCalculator\FractionCalculator\obj\Debug\net48\FractionCalculator.AssemblyInfo.cs
+C:\Users\tim.sibiski\source\repos\FractionCalculator\FractionCalculator\obj\Debug\net48\FractionCalculator.csproj.CoreCompileInputs.cache
+C:\Users\tim.sibiski\source\repos\FractionCalculator\FractionCalculator\bin\Debug\net48\FractionCalculator.exe.config
+C:\Users\tim.sibiski\source\repos\FractionCalculator\FractionCalculator\bin\Debug\net48\FractionCalculator.exe
+C:\Users\tim.sibiski\source\repos\FractionCalculator\FractionCalculator\bin\Debug\net48\FractionCalculator.pdb
+C:\Users\tim.sibiski\source\repos\FractionCalculator\FractionCalculator\obj\Debug\net48\FractionCalculator.exe
+C:\Users\tim.sibiski\source\repos\FractionCalculator\FractionCalculator\obj\Debug\net48\FractionCalculator.pdb
+C:\Users\tim.sibiski\source\repos\FractionCalculator\FractionCalculator\obj\Debug\net48\FractionCalculator.csproj.AssemblyReference.cache
