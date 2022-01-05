@@ -10,6 +10,22 @@ namespace FractionCalculator
 
         private enum InputType { Operand, OpenParenthesis, CloseParenthesis, Operator, Divisor }
 
+        public const string WHOLE_NUMBERS_ERROR_TEXT = "Whole numbers cannot be used in the fraction calculator. Add whole number values in the form of a fraction such as \"10/5\", which would be \"2\"";
+        public const string EQUATION_CAN_ONLY_START_WITH_THESE = "An equation can only start with a fraction or open parenthesis.";
+        public const string OPEN_PARENTHESIS_ERROR = "An open parenthesis can only be added after an operator.";
+        public const string ALL_OPEN_PARENTHESIS_MUST_BE_CLOSED = "All open parenthesis must be closed before the equation can be solved.";
+        public const string CLOSED_PARENTHESIS_ERROR = "A close parenthesis can only be added after a fraction.";
+        public const string OPERATOR_MUST_FOLLOW_CLOSED_PARENTHESIS_ERROR = "An operator must follow a close parenthesis";
+        public const string FRACTION_MUST_BE_FOLLOWED_BY_ERROR = "A fraction must be followed by a parenthesis or operator.";
+        public const string OPERATOR_MUST_BE_FOLLOWED_BY_ERROR = "An operator must be followed by a parenthesis or fraction.";
+        public const string PARENTHESIS_MUST_BE_FOLLOWED_BY_ERROR = "A parenthesis must be followed by an operator or fraction.";
+        public const string OPEN_PARENTHESIS_MUST_HAVE_MATCHING_CLOSE = "A close parenthesis must have a matching open parenthesis located earlier in the formation of the equation.";
+        public const string MUST_CHOOSE_DENOMINATOR_ERROR = "You must choose a denominator for the current fraction being entered.";
+        public const string CHOOSE_OPERATOR_ERROR = "Choose an operator to add the current fraction to the equation.";
+        public const string NUMBER_MUST_BE_SELECTED_ERROR = "A numerator must be selected before the fraction divisior can be entered.";
+        public const string EQUATION_CANNOT_END_WITH_AN_OPERATOR_ERROR = "An equation cannot end with an operator.";
+        public const string ENTER_AN_EQUATION_ERROR = "Please enter an equation to solve.";
+
         private bool Validate(InputType inputType)
         {
             labelError.Text = string.Empty;
@@ -26,7 +42,7 @@ namespace FractionCalculator
 
             if (!isFractionPrepared && !string.IsNullOrEmpty(CalculatorCore.CurrentNumber) && inputType != InputType.Operand && inputType != InputType.Divisor && !labelCurrentFraction.Text.Contains("/"))
             {
-                labelError.Text = "Whole numbers cannot be used in the fraction calculator. Add whole number values in the form of a fraction such as \"10/5\", which would be \"2\"";
+                labelError.Text = WHOLE_NUMBERS_ERROR_TEXT;
                 return false;
             }
 
@@ -34,7 +50,7 @@ namespace FractionCalculator
             {
                 if (inputType == InputType.Operator || inputType == InputType.CloseParenthesis)
                 {
-                    labelError.Text = "An equation can only start with a fraction or open parenthesis.";
+                    labelError.Text = EQUATION_CAN_ONLY_START_WITH_THESE;
                     return false;
                 }
             }
@@ -43,32 +59,32 @@ namespace FractionCalculator
                 // Validate that the next input type is not the same as the last, which would indicate an invalid equation.
                 if (typeOfLastEquationPiece != typeof(Operator) && (inputType == InputType.OpenParenthesis))
                 {
-                    labelError.Text = "An open parenthesis can only be added after an operator.";
+                    labelError.Text = OPEN_PARENTHESIS_ERROR;
                     return false;
                 }
                 if (typeOfLastEquationPiece != typeof(Operand) && inputType == InputType.CloseParenthesis && !isFractionPrepared)
                 {
-                    labelError.Text = "A close parenthesis can only be added after a fraction.";
+                    labelError.Text = CLOSED_PARENTHESIS_ERROR;
                     return false;
                 }
                 if (typeOfLastEquationPiece == typeof(Parenthesis) && !((Parenthesis)CalculatorCore.CurrentEquation.PiecesOfEquation.Last()).IsOpenParenthesis && inputType != InputType.Operator)
                 {
-                    labelError.Text = "An operator must follow a close parenthesis";
+                    labelError.Text = OPERATOR_MUST_FOLLOW_CLOSED_PARENTHESIS_ERROR;
                     return false;
                 }
                 if (typeOfLastEquationPiece == typeof(Operand) && inputType == InputType.Operand)
                 {
-                    labelError.Text = "A fraction must be followed by a parenthesis or operator.";
+                    labelError.Text = FRACTION_MUST_BE_FOLLOWED_BY_ERROR;
                     return false;
                 }
                 if (typeOfLastEquationPiece == typeof(Operator) && inputType == InputType.Operator)
                 {
-                    labelError.Text = "An operator must be followed by a parenthesis or fraction.";
+                    labelError.Text = labelError.Text = OPERATOR_MUST_BE_FOLLOWED_BY_ERROR;
                     return false;
                 }
                 if (typeOfLastEquationPiece == typeof(Parenthesis) && (inputType == InputType.OpenParenthesis || inputType == InputType.CloseParenthesis))
                 {
-                    labelError.Text = "A parenthesis must be followed by an operator or fraction.";
+                    labelError.Text = PARENTHESIS_MUST_BE_FOLLOWED_BY_ERROR; 
                     return false;
                 }
             }
@@ -78,25 +94,25 @@ namespace FractionCalculator
             {
                 int openParenthesis = CalculatorCore.CurrentEquation.PiecesOfEquation.FindAll(x => x.GetType() == typeof(Parenthesis) && ((Parenthesis)x).IsOpenParenthesis).Count;
                 int closedParenthesis = CalculatorCore.CurrentEquation.PiecesOfEquation.FindAll(x => x.GetType() == typeof(Parenthesis) && !((Parenthesis)x).IsOpenParenthesis).Count + 1;
-                if (openParenthesis != closedParenthesis)
+                if (inputType == InputType.CloseParenthesis && openParenthesis != closedParenthesis)
                 {
-                    labelError.Text = "A close parenthesis must have a matching open parenthesis located earlier in the formation of the equation.";
+                    labelError.Text = OPEN_PARENTHESIS_MUST_HAVE_MATCHING_CLOSE;
                     return false;
                 }
             }
             else if (inputType == InputType.Divisor && labelCurrentFraction.Text.EndsWith("/"))
             {
-                labelError.Text = "You must choose a denominator for the current fraction being entered.";
+                labelError.Text = MUST_CHOOSE_DENOMINATOR_ERROR;
                 return false;
             }
             else if (inputType == InputType.Divisor && labelCurrentFraction.Text.Contains("/"))
             {
-                labelError.Text = "Choose an operator to add the current fraction to the equation.";
+                labelError.Text = CHOOSE_OPERATOR_ERROR; 
                 return false;
             }
             else if (inputType == InputType.Divisor && string.IsNullOrEmpty(CalculatorCore.CurrentNumber))
             {
-                labelError.Text = "A numerator must be selected before the fraction divisior can be entered.";
+                labelError.Text = NUMBER_MUST_BE_SELECTED_ERROR;
                 return false;
             }
             return true;
@@ -235,6 +251,25 @@ namespace FractionCalculator
         {
             UpdateCurrentFraction();
             CalculatorCore.ResetForNextPieceOfEquation();
+            if (!CalculatorCore.CurrentEquation.PiecesOfEquation.Any())
+            {
+                labelError.Text = ENTER_AN_EQUATION_ERROR;
+                return;
+            }
+
+            // Verify that all open parenthesis have been closed.
+            int openParenthesis = CalculatorCore.CurrentEquation.PiecesOfEquation.FindAll(x => x.GetType() == typeof(Parenthesis) && ((Parenthesis)x).IsOpenParenthesis).Count;
+            int closedParenthesis = CalculatorCore.CurrentEquation.PiecesOfEquation.FindAll(x => x.GetType() == typeof(Parenthesis) && !((Parenthesis)x).IsOpenParenthesis).Count;
+            if (openParenthesis != closedParenthesis)
+            {
+                labelError.Text = ALL_OPEN_PARENTHESIS_MUST_BE_CLOSED;
+                return;
+            }
+            else if (CalculatorCore.CurrentEquation.PiecesOfEquation.Last().GetType() == typeof(Operator))
+            {
+                labelError.Text = EQUATION_CANNOT_END_WITH_AN_OPERATOR_ERROR;
+                return;
+            }
             labelResult.Text = CalculatorCore.CurrentEquation.Solve();
         }
 

@@ -67,7 +67,7 @@ namespace FractionCalculator
 			else if (answer.WholeNumber == 0)
 				return $"Result: {answer.Numerator}/{answer.Denominator}";
 			else
-				return $"Result: {answer.WholeNumber} & {answer.Numerator}/{answer.Denominator}";
+				return $"Result: {answer.WholeNumber} {answer.Numerator}/{answer.Denominator}";
 		}
 
 		private Operand CalculateResult(List<IPieceOfEquation> equation, bool simplify)

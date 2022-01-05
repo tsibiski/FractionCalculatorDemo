@@ -25,7 +25,7 @@ namespace FractionCalculatorTests
             CalculatorCore.CurrentEquation.PiecesOfEquation.Add(new Operator(Operation.Add));
             CalculatorCore.CurrentEquation.PiecesOfEquation.Add(new Operand(1, 5));
             string result = CalculatorCore.CurrentEquation.Solve().Replace("Result:", string.Empty).Trim();
-            string expectedResult = "4 & 2/5";
+            string expectedResult = "4 2/5";
             Assert.IsTrue(result == expectedResult, $"The equation \"{CalculatorCore.CurrentEquation.GetEquationText()}\" returns a result of \"{result}\" and should equal \"{expectedResult}\".");
         }
 
@@ -44,7 +44,7 @@ namespace FractionCalculatorTests
             CalculatorCore.CurrentEquation.PiecesOfEquation.Add(new Operator(Operation.Add));
             CalculatorCore.CurrentEquation.PiecesOfEquation.Add(new Operand(1, 5));
             string result = CalculatorCore.CurrentEquation.Solve().Replace("Result:", string.Empty).Trim();
-            string expectedResult = "1 & 4/25";
+            string expectedResult = "1 4/25";
             Assert.IsTrue(result == expectedResult, $"The equation \"{CalculatorCore.CurrentEquation.GetEquationText()}\" returns a result of \"{result}\" and should equal \"{expectedResult}\".");
         }
 
@@ -61,7 +61,7 @@ namespace FractionCalculatorTests
             CalculatorCore.CurrentEquation.PiecesOfEquation.Add(new Operand(2, 5));
             CalculatorCore.CurrentEquation.PiecesOfEquation.Add(new Parenthesis(false));
             string result = CalculatorCore.CurrentEquation.Solve().Replace("Result:", string.Empty).Trim();
-            string expectedResult = "2 & 13/70";
+            string expectedResult = "2 13/70";
             Assert.IsTrue(result == expectedResult, $"The equation \"{CalculatorCore.CurrentEquation.GetEquationText()}\" returns a result of \"{result}\" and should equal \"{expectedResult}\".");
         }
 
@@ -76,7 +76,7 @@ namespace FractionCalculatorTests
             CalculatorCore.CurrentEquation.PiecesOfEquation.Add(new Operator(Operation.Add));
             CalculatorCore.CurrentEquation.PiecesOfEquation.Add(new Operand(1, 5));
             string result = CalculatorCore.CurrentEquation.Solve().Replace("Result:", string.Empty).Trim();
-            string expectedResult = "3 & 1/5";
+            string expectedResult = "3 1/5";
             Assert.IsTrue(result == expectedResult, $"The equation \"{CalculatorCore.CurrentEquation.GetEquationText()}\" returns a result of \"{result}\" and should equal \"{expectedResult}\".");
         }
 
